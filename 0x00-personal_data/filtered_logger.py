@@ -89,9 +89,9 @@ def get_db() -> MySQLConnection:
     Returns:
         MySQLConnection: A MySQL connection object.
     """
-    username = os.getenv('PERSONAL_DATA_DB_USERNAME')
-    password = os.getenv('PERSONAL_DATA_DB_PASSWORD')
-    host = os.getenv('PERSONAL_DATA_DB_HOST')
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    host = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
     database = os.getenv('PERSONAL_DATA_DB_NAME')
 
     return mysql.connector.connect(
