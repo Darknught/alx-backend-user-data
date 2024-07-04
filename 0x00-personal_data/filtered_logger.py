@@ -4,6 +4,8 @@ import logging
 import re
 from typing import List, Tuple
 
+PII_FIELDS: Tuple[str, ...] = ("name", "email", "phone", "ssn", "password")
+
 
 def filter_datum(
         fields: List[str], redaction: str, message: str, separator: str
@@ -60,7 +62,6 @@ class RedactingFormatter(logging.Formatter):
         return filter_datum(
                 self.fields, self.REDACTION, original_message, self.SEPARATOR)
 
-PII_FIELDS: Tuple[str, ...] = ("name", "email", "phone", "ssn", "password")
 
 def get_logger() -> logging.Logger:
     """ method takes no args and returns a logging.Logger object.
