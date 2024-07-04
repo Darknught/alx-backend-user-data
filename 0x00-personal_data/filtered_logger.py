@@ -100,3 +100,27 @@ def get_db() -> MySQLConnection:
         host=host,
         database=database
     )
+
+
+def main():
+    """
+    Main function to retrieve all rows from the users table and
+    log them with filtered PII fields.
+    """
+    logger = get_logger()
+    db = get_db()
+
+    cursor = db.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM users;")
+
+    for row in cursor.fetchall():
+        filtered_row = {
+                key: value for key, value in row.items() if key in PII_FIELDS}
+        logger.info(filtered_row)
+
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
