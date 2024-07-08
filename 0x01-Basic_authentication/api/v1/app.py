@@ -33,7 +33,7 @@ def unauthorized(error) -> str:
     """
     Error: Unauthorized handler
     """
-    return pretty_jsonify({"error": "Unauthorized"}), 401
+    return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
@@ -41,7 +41,7 @@ def forbidden(error) -> str:
     """
     Error: forbidden handler
     """
-    return pretty_jsonify({"error": "Forbidden"}), 403
+    return jsonify({"error": "Forbidden"}), 403
 
 
 if __name__ == "__main__":
