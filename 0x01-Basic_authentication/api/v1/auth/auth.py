@@ -15,7 +15,6 @@ class Auth:
         """
         return False
 
-
     def authorization_header(self, request=None) -> str:
         """ Method to handle authorization header
         Args:
@@ -23,7 +22,6 @@ class Auth:
         Return: string
         """
         return None
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ A method that determines the current user
