@@ -70,12 +70,6 @@ def before_request():
         abort(403)
 
 
-class BasicAuth(Auth):
-    """ class that inherits from Auth
-    """
-    pass
-
-
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
