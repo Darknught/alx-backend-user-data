@@ -53,9 +53,3 @@ class Auth:
         Return: The user
         """
         return None
-
-
-class BasicAuth(Auth):
-    """ Class that inherits from Auth.
-    """
-    pass
