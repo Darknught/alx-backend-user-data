@@ -4,7 +4,6 @@
 from api.v1.views import app_views
 from flask import abort, jsonify, request
 from models.user import User
-from flask import g
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
@@ -134,6 +133,7 @@ def get_current_user() -> str:
       - User object JSON represented
       - 404 if the User ID doesn't exist
     """
-    if not hasattr(g, 'user'):
+    user = getattr(request, 'current_user', None)
+    if user is None:
         abort(404)
-    return jsonify(g.user.to_json())
+    return jsonify(user.to_json())
