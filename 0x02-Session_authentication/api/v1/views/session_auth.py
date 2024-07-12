@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """ Module that handles all routes for session Auth
 """
-from flask import jsonify, abort, request
+from flask import Blueprint, jsonify, abort, request
 from models.user import User
+from api.v1.auth.session_auth import SessionAuth
 from api.v1.views import app_views
+import os
 
 
 @app_views.route(
@@ -14,9 +16,10 @@ def login():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    if not email:
+    if not email or len(email.strip()) == 0:
         return jsonify({"error": "email missing"}), 400
-    if not password:
+
+    if not password or len(password.strip()) == 0:
         return jsonify({"error": "password missing"}), 400
 
     users = User.search({'email': email})
@@ -28,9 +31,11 @@ def login():
         return jsonify({"error": "wrong password"}), 401
 
     from api.v1.app import auth
+
     session_id = auth.create_session(user.id)
     response = jsonify(user.to_json())
-    response.set_cookie(auth.SESSION_NAME, session_id)
+    session_name = os.getenv('SESSION_NAME')
+    response.set_cookie(session_name, session_id)
     return response
 
 
