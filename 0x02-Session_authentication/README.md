@@ -105,6 +105,39 @@ Basic Authentication is a simple authentication scheme built into the HTTP proto
 - If valid, returns the requested resource.
 - If invalid, returns `401 Unauthorized`.
 
+
+## Session Authentication
+Session Authentication involves creating a session for the user and maintaining it through cookies. It provides a more secure and scalable way to manage user authentication.
+
+### Process:
+- Login: The user sends credentials, and the server creates a session, returning a session ID.
+- Session Storage: The session ID is stored on the client (typically in cookies) and on the server (in memory or a database).
+- Authenticated Requests: The client includes the session ID in subsequent requests.
+- Session Validation: The server validates the session ID and retrieves the associated user.
+- Logout: The session is destroyed, removing the session ID from the client and server.
+
+### Example Endpoints:
+- POST /api/v1/auth_session/login: Authenticates a user and creates a session.
+- GET /api/v1/users/me: Retrieves the authenticated user's details.
+- DELETE /api/v1/auth_session/logout: Logs out the user and destroys the session.
+
+
+### SessionAuth Class (session_auth.py)
+The `SessionAuth` class inherits from `Auth` and implements methods for session-based authentication
+
+### Methods:
+- `create_session(self, user_id=None) -> str`: Creates a session for a user
+- `user_id_for_session_id(self, session_id=None) -> str`: Retrieves a user ID based on the session ID.
+- `destroy_session(self, request=None) -> bool`: Destroys a session based on the request.
+
+### SessionExpAuth Class (session_exp_auth.py)
+The SessionExpAuth class inherits from SessionAuth and adds session expiration functionality.
+
+### Methods:
+- `create_session(self, user_id=None) -> str`: Creates a session with an expiration time.
+- `user_id_for_session_id(self, session_id=None) -> str`: Retrieves a user ID based on the session ID, considering session expiration.
+
+
 ## Setting Up the Project
 
 ### Prerequisites
