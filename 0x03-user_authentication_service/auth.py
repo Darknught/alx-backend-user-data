@@ -56,6 +56,7 @@ class Auth:
         except Exception:
             return False
 
+    @staticmethod
     def _generate_uuid(self) -> str:
         """ Method that returns a string representation of new UUID
         """
