@@ -1,0 +1,41 @@
+2024-07-16 10:46:08 INFO: BEGIN (implicit)
+2024-07-16 10:46:08 INFO: PRAGMA main.table_info("users")
+2024-07-16 10:46:08 INFO: [raw sql] ()
+2024-07-16 10:46:08 INFO: PRAGMA temp.table_info("users")
+2024-07-16 10:46:08 INFO: [raw sql] ()
+2024-07-16 10:46:08 INFO: COMMIT
+2024-07-16 10:46:08 INFO: BEGIN (implicit)
+2024-07-16 10:46:08 INFO: PRAGMA main.table_info("users")
+2024-07-16 10:46:08 INFO: [raw sql] ()
+2024-07-16 10:46:08 INFO: PRAGMA temp.table_info("users")
+2024-07-16 10:46:08 INFO: [raw sql] ()
+2024-07-16 10:46:08 INFO: 
+CREATE TABLE users (
+	id INTEGER NOT NULL, 
+	email VARCHAR(250) NOT NULL, 
+	hashed_password VARCHAR(250) NOT NULL, 
+	session_id VARCHAR(250), 
+	reset_token VARCHAR(250), 
+	PRIMARY KEY (id)
+)
+
+
+2024-07-16 10:46:08 INFO: [no key 0.00041s] ()
+2024-07-16 10:46:08 INFO: COMMIT
+2024-07-16 10:46:08 INFO: BEGIN (implicit)
+2024-07-16 10:46:08 INFO: INSERT INTO users (email, hashed_password, session_id, reset_token) VALUES (?, ?, ?, ?)
+2024-07-16 10:46:08 INFO: [generated in 0.00050s] ('test@test.com', 'SuperHashedPwd', None, None)
+2024-07-16 10:46:08 INFO: COMMIT
+2024-07-16 10:46:08 INFO: BEGIN (implicit)
+2024-07-16 10:46:08 INFO: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.session_id AS users_session_id, users.reset_token AS users_reset_token 
+FROM users 
+WHERE users.id = ?
+2024-07-16 10:46:08 INFO: [generated in 0.00046s] (1,)
+2024-07-16 10:46:08 INFO: INSERT INTO users (email, hashed_password, session_id, reset_token) VALUES (?, ?, ?, ?)
+2024-07-16 10:46:08 INFO: [cached since 0.03156s ago] ('test1@test.com', 'SuperHashedPwd1', None, None)
+2024-07-16 10:46:08 INFO: COMMIT
+2024-07-16 10:46:08 INFO: BEGIN (implicit)
+2024-07-16 10:46:08 INFO: SELECT users.id AS users_id, users.email AS users_email, users.hashed_password AS users_hashed_password, users.session_id AS users_session_id, users.reset_token AS users_reset_token 
+FROM users 
+WHERE users.id = ?
+2024-07-16 10:46:08 INFO: [cached since 0.008407s ago] (2,)
