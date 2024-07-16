@@ -16,6 +16,12 @@ def _hash_password(password: str) -> bytes:
     return hashed_password
 
 
+def _generate_uuid(self) -> str:
+    """ Method that returns a string representation of new UUID
+    """
+    return str(uuid.uuid4())
+
+
 class Auth:
     """Auth class to interact with the authentication database.
     """
@@ -55,9 +61,3 @@ class Auth:
                 'utf-8'), user.hashed_password.encode('utf-8'))
         except Exception:
             return False
-
-    @staticmethod
-    def _generate_uuid(self) -> str:
-        """ Method that returns a string representation of new UUID
-        """
-        return str(uuid.uuid4())
