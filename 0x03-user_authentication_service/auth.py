@@ -42,3 +42,15 @@ class Auth:
                 email=email, hashed_password=hashed_password.decode('utf-8'))
 
         return new_user
+
+    def valid_login(self, email: str, password: str) -> bool:
+        """ Method that locates if the email is valid and decode
+        Return:
+            True if it matches or False
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            return bcrypt.checkpw(password.encode(
+                'utf-8'), user.hashed_password.encode('utf-8'))
+        except Exception:
+            return False
