@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Module that defines a flask app
 """
-from flask import jsonify
+from flask import Flask, jsonify
 
 
 app = Flask(__name__)
