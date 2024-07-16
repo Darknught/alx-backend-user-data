@@ -35,7 +35,7 @@ class Auth:
             pass
 
         # Hash the password
-        hashed_password = self._hash_password(password)
+        hashed_password = _hash_password(password)
 
         # Add the new User object to database
         new_user = self._db.add_user(
