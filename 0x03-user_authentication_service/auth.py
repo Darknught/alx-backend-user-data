@@ -61,3 +61,21 @@ class Auth:
                 'utf-8'), user.hashed_password.encode('utf-8'))
         except Exception:
             return False
+
+    def create_session(self, email: str) -> str:
+        """ Method that finds user to the email, generate a new UUID and store
+        it in the database as the user's session_id
+        """
+        try:
+            new_user = self._db.find_user_by(email=email)
+        except NoResultFound:
+            return None
+
+        # Generate a new UUID for the session ID
+        session_id = _generate_uuid()
+
+        # Update the user's session_id in the database
+        self._db.update_user(new_user.id, session_id=session_id)
+
+        # Return the session ID
+        return session_id
