@@ -16,7 +16,6 @@ def _hash_password(password: str) -> bytes:
     return hashed_password
 
 
-@staticmethod
 def _generate_uuid(self) -> str:
     """ Method that returns a string representation of new UUID
     """
