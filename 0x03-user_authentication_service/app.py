@@ -20,7 +20,7 @@ def home() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
-@app.route('/users/', methods=['POST'], strict_slashes=False)
+@app.route('/users', methods=['POST'], strict_slashes=False)
 def users() -> str:
     """ POST /users/
     Return:
@@ -40,7 +40,7 @@ def users() -> str:
         return ({"message": "email already registered"}), 400
 
 
-@app.route('/sessions/', methods=['POST'], strict_slashes=False)
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
     """ POST /sessions
     Return:
