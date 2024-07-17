@@ -104,7 +104,7 @@ class Auth:
         """ Method that resets the user's token
         """
         try:
-            new_tok = self._db.find_user_by(email=email)
+            user = self._db.find_user_by(email=email)
         except NoResultFound:
             raise ValueError(f"User {email} does not exist")
 
